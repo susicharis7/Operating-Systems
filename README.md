@@ -29,7 +29,8 @@ For this assignment, we developed a custom shell implementation with the followi
   - `countwords`: Takes filename and displays word count with filename
 - **Output Redirection**: Supports redirecting command output to files (e.g., `command > foo.txt`)
 - **System Calls**: Utilizes `fork()`, `exec()`, and `wait()` for process management
-- [Add description of forkbomb feature here]
+- **Forkbomb**: Implemented a dangerous forkbomb feature with confirmation prompt [y/n]  
+  <small>*Curious what happens if you press y? Fork this repository and try it yourself!*</small>
 
 ## Technical Questions & Answers
 
