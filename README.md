@@ -19,7 +19,18 @@ For this assignment, we developed a custom shell implementation with the followi
     - Number of bytes
     - Filename
   - `grep`: Takes two arguments (key and file), outputs lines containing the key
-  - `df`: [Brief description of what your df implementation does]
+  - `df`: Linux disk filesystem utility that shows:
+      ```bash
+      Filesystem     1K-blocks    Used Available Use% Mounted on
+      /dev/sda1       10485760 5242880   5242880  50% /
+      ```
+      - **Displays**:
+        - Total, used, and available disk space
+        - Usage percentage
+        - Mount points of all filesystems
+      - **Common Flags**:
+        - `-h` (human-readable sizes)
+        - `-T` (show filesystem type)
   - `cmatrix`: Fun command that covers the display with green "Matrix"-style numbers
 
 ### Advanced Features
@@ -46,7 +57,7 @@ A single-core, uniprocessor system that supports multiprogramming can only run o
 inter-process communication (IPC). If there are multiple threads in one process, are the system
 calls needed for sharing memory between those threads?**
 
-[Your answer here]
+[Update answer later]
 
 ### Question 1.5.3
 **Consider the following sample code from a simple shell program. Now,
@@ -65,3 +76,25 @@ if(rc == 0) { // child
 else { // parent
     wait();
 }
+```
+**Solution:**
+To redirect output to a file instead of STDOUT, we need to:
+1. Open the target file with appropriate permissions
+2. Redirect STDOUT to point to the file using file descriptors
+3. Close the original file descriptor to avoid leaks
+4. Execute the command (which will now output to the file)
+
+**Modified Code:**
+```c
+command = read_from_user();
+int rc = fork();
+if (rc == 0) { // Child
+    int fd = open("foo.txt", O_WRONLY | O_CREAT | O_TRUNC, 0644); // Open file
+    dup2(fd, STDOUT_FILENO); // Redirect stdout to file
+    close(fd); // Close unused fd
+    exec(command); // Execute command (output goes to foo.txt)
+}
+else { // Parent
+    wait();
+}
+```
