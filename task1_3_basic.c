@@ -7,29 +7,29 @@
 int main() {
     pid_t pid;
 
-    printf("Parent: pokrećem novi proces...\n");
+    printf("Parent: starting new process...\n");
 
-    pid = fork(); // 🔹 1. fork()
+    pid = fork(); // fork()
 
     if (pid < 0) {
-        perror("Greška pri fork()");
+        perror("Error: fork()");
         exit(1);
     }
 
     if (pid == 0) {
-        // 🔹 2. Child proces – koristi exec()
-        printf("Child: izvršavam komandu 'ls -l'\n");
+        // child proces – uses exec()
+        printf("Child: executing command >> 'ls -l'\n");
 
         char *args[] = {"ls", "-l", NULL};
-        execvp(args[0], args); // 🔹 3. exec()
+        execvp(args[0], args); // exec()
 
-        // Ako exec ne uspe:
-        perror("Greška pri exec()");
+        // if exec fails
+        perror("Error: exec()");
         exit(1);
     } else {
-        // 🔹 4. Parent proces – koristi wait()
-        wait(NULL); // Čeka da se child završi
-        printf("Parent: Child proces se završio.\n");
+        // parent proces – uses wait()
+        wait(NULL); // waits for child to finish..
+        printf("Parent: Child process has finished.\n");
     }
 
     return 0;

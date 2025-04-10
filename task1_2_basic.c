@@ -59,7 +59,7 @@ int main() {
         pid_t pid = fork();
 
         if (pid < 0) {
-            perror("fork nije uspeo");
+            perror("Fork failed...");
             continue;
         } else if (pid == 0) {
             // Child process - try to run command

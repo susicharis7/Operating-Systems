@@ -6,47 +6,47 @@
 #include <string.h>
 #include <sys/wait.h>
 
-#define STACK_SIZE 1024 * 1024 // 1 MB za stack
+#define STACK_SIZE 1024 * 1024 // 1 MB (for stack)
 
-// Funkcija koju clone() izvršava
+// `clone()` executes this function
 int child_function(void *arg) {
-    printf("Child (clone): Pozivam execle() za /bin/ls\n");
+    printf("Child (clone) - calling `execle()` for: /bin/ls\n");
 
-    // Environment promenljive (poslednji parametar execle)
+    // environment variables (last parameter is : `execle()`)
     char *envp[] = {
         "MY_VAR=HelloWorld",
         NULL
     };
 
-    // Pokrećemo `ls -l` komandu
+    // starting `ls -l` command..
     execle("/bin/ls", "ls", "-l", NULL, envp);
 
-    // Ako execle ne uspe
-    perror("execle nije uspeo");
+    // if `execle` doesn't work
+    perror("execle failed..");
     exit(1);
 }
 
 int main() {
-    // Alociramo memoriju za novi stack
+    // allocating memory for new stack
     void *stack = malloc(STACK_SIZE);
     if (!stack) {
         perror("malloc");
         exit(1);
     }
 
-    printf("Parent: pokrećem clone()\n");
+    printf("Parent: starting clone()\n");
 
-    // Kreiramo novi proces sa CLONE_VM flagom (slično fork)
+    // creating new process with: `CLONE_VM` flag (similar to `fork()`)
     pid_t pid = clone(child_function, stack + STACK_SIZE, SIGCHLD, NULL);
     if (pid == -1) {
-        perror("clone nije uspeo");
+        perror("clone failed...");
         free(stack);
         exit(1);
     }
 
-    // Čekamo child proces
+    // waiting for child process..
     waitpid(pid, NULL, 0);
-    printf("Parent: Child (clone) proces završen.\n");
+    printf("Parent: Child (clone) process is finished.\n");
 
     free(stack);
     return 0;

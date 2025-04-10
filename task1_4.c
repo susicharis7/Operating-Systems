@@ -9,7 +9,7 @@
 #define BUFFER_SIZE 1024
 #define MAX_ARGS 64
 
-// ANSI escape kodovi za boje
+// ANSI escape codes for colors...
 #define GREEN   "\033[32m"
 #define CYAN    "\033[36m"
 #define RESET   "\033[0m"
@@ -19,7 +19,7 @@ int main() {
     char *shellname = "susic-and-zajmovic-shell";
 
     while (1) {
-        // Info za prompt
+        // Info for prompt.. (using `get()` functions)
         char *username = getlogin();
         char hostname[HOST_NAME_MAX];
         gethostname(hostname, sizeof(hostname));
@@ -27,7 +27,7 @@ int main() {
         getcwd(cwd, sizeof(cwd));
         char *home = getenv("HOME");
 
-        // Ispis prompta sa bojama
+        // OUTPUT : prompt with colors...
         if (home != NULL && strstr(cwd, home) == cwd) {
             printf("%s[%s]%s %s%s@%s:~%s$ %s", GREEN, shellname, RESET, CYAN, username, hostname, cwd + strlen(home), RESET);
         } else {
@@ -36,7 +36,7 @@ int main() {
 
         fflush(stdout);
 
-        // Čitanje unosa
+        // reading the input
         if (fgets(input, sizeof(input), stdin) == NULL) {
             printf("\n");
             break;
@@ -47,7 +47,7 @@ int main() {
         if (strlen(input) == 0) continue;
         if (strcmp(input, "exit") == 0) break;
 
-        // Parsiranje u args[]
+        // parsing into `args[]` 
         char *args[MAX_ARGS];
         int i = 0;
         char *token = strtok(input, " ");
@@ -61,12 +61,12 @@ int main() {
         pid_t pid = fork();
         if (pid == 0) {
             execvp(args[0], args);
-            perror("Greška pri izvršavanju komande");
+            perror("ERROR While Executing Command!");
             exit(1);
         } else if (pid > 0) {
             wait(NULL);
         } else {
-            perror("fork greška");
+            perror("FORK Error!");
         }
     }
 
