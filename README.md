@@ -141,6 +141,10 @@ To build any of the executables:
 ```bash
 gcc [source_file.c] -Wall -o [executable_name] 
 ```
+To run:
+```bash
+./[executable_name]
+```
 
 ## Sources
 
