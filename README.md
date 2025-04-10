@@ -9,7 +9,7 @@ A custom shell implementation with basic and advanced features, created as part 
 # Project Directory Structure
 
 ## Source Files
-- `again-first-project.c` - Main project file
+- `full-project.c` - Main project file
 - `task1_1.c` - Basic task 1 solution
 - `task1_1_advanced.c` - Advanced task 1 solution
 - `task1_2_basic.c` - Basic implementation of task 2
@@ -20,7 +20,7 @@ A custom shell implementation with basic and advanced features, created as part 
 - `task1_4.c` - Task 4
 
 ## Compiled Executables
-- `afp` - Compiled from again-first-project.c
+- `full-project` - Compiled from again-first-project.c
 - `task1_1` - Compiled from task1_1.c
 - `task1_1_advanced` - Compiled from task1_1_advanced.c
 - `task1_2_basic` - Compiled from task1_2_basic.c
@@ -63,7 +63,7 @@ For this assignment, we developed a custom shell implementation with the followi
 ### Advanced Features
 - **Custom Commands**:
   - `info`: Displays user and machine names
-  - `random`: Generates a random number between 1-100
+  - `random`: By default generates a random number between 1-100, additionally theuser can input a number after 'random' and the range of the generated number will be changed to the inputed number
   - `countwords`: Takes filename and displays word count with filename
 - **Output Redirection**: Supports redirecting command output to files (e.g., `command > foo.txt`)
 - **System Calls**: Utilizes `fork()`, `exec()`, and `wait()` for process management
