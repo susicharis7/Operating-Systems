@@ -9,7 +9,7 @@ A custom shell implementation with basic and advanced features, created as part 
 # Project Directory Structure
 
 ## Source Files
-- `again-first-project.c` - Initial project attempt
+- `again-first-project.c` - Main project file
 - `task1_1.c` - Basic task 1 solution
 - `task1_1_advanced.c` - Enhanced task 1 solution
 - `task1_2_basic.c` - Basic implementation of task 2
