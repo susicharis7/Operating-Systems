@@ -10,50 +10,51 @@ int main() {
     char input[BUFFER_SIZE];
 
     while (1) {
-        // Ime korisnika
+        // get the name of the user
         char *username = getlogin();
 
-        // Ime računara
+        // get the name of the PC
         char hostname[HOST_NAME_MAX];
         gethostname(hostname, sizeof(hostname));
 
-        // Trenutni direktorijum
+        // current directory
         char cwd[PATH_MAX];
         getcwd(cwd, sizeof(cwd));
 
-        // HOME direktorijum
+        // home directory
         char *home = getenv("HOME");
 
-        // Prikaz ~ ako si u HOME direktorijumu
+        // if you are in home directory
         if (home != NULL && strstr(cwd, home) == cwd) {
             printf("%s@%s:~%s$ ", username, hostname, cwd + strlen(home));
         } else {
             printf("%s@%s:%s$ ", username, hostname, cwd);
         }
 
-        fflush(stdout); // osiguraj da se prompt ispiše
+	// make sure that `prompt` is written out
+        fflush(stdout);
 
-        // Čitanje unosa
+        // reading the input
         if (fgets(input, sizeof(input), stdin) == NULL) {
             printf("\n");  // Ctrl+D
             break;
         }
 
-        // Ukloni novi red
+        // remove newline
         input[strcspn(input, "\n")] = 0;
 
-        // Exit uslov
+        // exit
         if (strcmp(input, "exit") == 0) {
             break;
         }
 
-        // Ako je prazno – preskoči
+        // if it's empty - skip
         if (strlen(input) == 0) {
             continue;
         }
 
-        // Test: prikaži komandu
-        printf("Uneli ste komandu: %s\n", input);
+        // show the command/input
+        printf("You entered (command): %s\n", input);
     }
 
     return 0;

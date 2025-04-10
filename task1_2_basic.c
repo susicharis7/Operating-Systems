@@ -29,13 +29,13 @@ int main() {
 
         fflush(stdout);
 
-        // Čitanje unosa
+        // reading the input
         if (fgets(input, sizeof(input), stdin) == NULL) {
             printf("\n");
             break;
         }
 
-        input[strcspn(input, "\n")] = 0; // uklanjanje \n
+        input[strcspn(input, "\n")] = 0; 
 
         if (strcmp(input, "exit") == 0) {
             break;
@@ -45,7 +45,7 @@ int main() {
             continue;
         }
 
-        // Parsiranje unosa u argumente
+        // parsing inputs into arguments
         char *args[MAX_ARGS]; // ls -l NULL
         int i = 0;
         char *token = strtok(input, " ");
@@ -53,7 +53,7 @@ int main() {
             args[i++] = token;
             token = strtok(NULL, " ");
         }
-        args[i] = NULL; // kraj niza argumenata
+        args[i] = NULL; // end of array of arguments
 
         // fork
         pid_t pid = fork();
@@ -62,13 +62,13 @@ int main() {
             perror("fork nije uspeo");
             continue;
         } else if (pid == 0) {
-            // Child proces: pokušaj da pokrene komandu
+            // Child process - try to run command
             if (execvp(args[0], args) == -1) {
-                perror("Greška pri izvršavanju komande");
+                perror("Error while executing the command, not good!");
             }
             exit(EXIT_FAILURE);
         } else {
-            // Parent: čeka child proces
+            // Parent - waits for child..
             wait(NULL);
         }
     }

@@ -12,27 +12,27 @@ int main() {
         printf("prompt$ ");
         fflush(stdout); // for promt to securely print out
 
-        //Reading user input
+        // reading user input
         if (fgets(input, sizeof(input), stdin) == NULL) {
-            printf("\n");  //for Ctrl+D
+            printf("\n");  // for Ctrl+D
             break;
         }
 
-        // Uklanjanje novog reda (\n)
+        // removing new line
         input[strcspn(input, "\n")] = 0;
 
-        // Ako korisnik unese "exit" – izlazimo
+        // if user enters exit - leave
         if (strcmp(input, "exit") == 0) {
             break;
         }
 
-        // Ako je unos prazan – ne radi ništa
+        // if input is empty - don't do anything
         if (strlen(input) == 0) {
             continue;
         }
 
-        // Za sada samo ispiši šta je korisnik uneo (test)
-        printf("Uneli ste komandu: %s\n", input);
+        // print out what user entered
+        printf("You entered (command): %s\n", input);
     }
 
     return 0;

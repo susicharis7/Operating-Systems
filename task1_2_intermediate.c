@@ -12,7 +12,7 @@
 
 int main() {
     char input[BUFFER_SIZE];
-    srand(time(NULL)); // za random broj
+    srand(time(NULL)); // for random number
 
     while (1) {
         // Prompt: username@hostname:~$
@@ -21,28 +21,29 @@ int main() {
         gethostname(hostname, sizeof(hostname));
         char cwd[PATH_MAX];
         getcwd(cwd, sizeof(cwd));
-        char *home = getenv("HOME");
-
+        char *home = getenv("HOME")
+;
+	// responsible for printing the shell prompt 
         if (home != NULL && strstr(cwd, home) == cwd) {
             printf("%s@%s:~%s$ ", username, hostname, cwd + strlen(home));
         } else {
             printf("%s@%s:%s$ ", username, hostname, cwd);
         }
 
-        fflush(stdout);
+        fflush(stdout); // force the prompt to be immediately displayed in the terminal
 
-        // Čitanje unosa
+        // reading the input
         if (fgets(input, sizeof(input), stdin) == NULL) {
             printf("\n");
             break;
         }
 
-        input[strcspn(input, "\n")] = 0; // ukloni '\n'
+        input[strcspn(input, "\n")] = 0;
 
-        if (strlen(input) == 0) continue;
-        if (strcmp(input, "exit") == 0) break;
+        if (strlen(input) == 0) continue; // if user only used `enter` - don't do anything, just ask again for input
+        if (strcmp(input, "exit") == 0) break; // if user entered `exit` - exit while loop and exit the program
 
-        // Parsiranje u args[]
+        // parsing into `args[]`
         char *args[MAX_ARGS];
         int i = 0;
         char *token = strtok(input, " ");
@@ -52,20 +53,20 @@ int main() {
         }
         args[i] = NULL;
 
-        // 🎯 Komanda: info
+        // command : `info`
         if (strcmp(args[0], "info") == 0) {
-            printf("Korisnik: %s\n", username);
-            printf("Mašina: %s\n", hostname);
+            printf("USER: %s\n", username);
+            printf("MACHINE: %s\n", hostname);
             continue;
         }
 
-        // 🎯 Komanda: random
+        // command : `random`
         if (strcmp(args[0], "random") == 0) {
-            printf("Nasumičan broj: %d\n", rand() % 100);
+            printf("Random Number: %d\n", rand() % 100);
             continue;
         }
 
-        // 🎯 Komanda: countwords fajl.txt
+        // command : `countwords`
         if (strcmp(args[0], "countwords") == 0 && args[1]) {
             char clean_filename[BUFFER_SIZE];
             strncpy(clean_filename, args[1], BUFFER_SIZE);
@@ -85,14 +86,14 @@ int main() {
             }
         }
 
-        // 🧠 Ostale komande
+        // other commands..
         pid_t pid = fork();
         if (pid < 0) {
-            perror("fork greška");
+            perror("fork error...");
             continue;
         } else if (pid == 0) {
             execvp(args[0], args);
-            perror("Greška u komandi");
+            perror("Error in command...");
             exit(EXIT_FAILURE);
         } else {
             wait(NULL);
