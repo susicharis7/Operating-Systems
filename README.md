@@ -6,6 +6,33 @@ A custom shell implementation with basic and advanced features, created as part 
 - Haris Susic
 - Sanin Zajmovic
 
+# Project Directory Structure
+
+## Source Files
+- `again-first-project.c` - Initial project attempt
+- `task1_1.c` - Basic task 1 solution
+- `task1_1_advanced.c` - Enhanced task 1 solution
+- `task1_2_basic.c` - Basic implementation of task 2
+- `task1_2_intermediate.c` - Intermediate version of task 2
+- `task1_2_advanced.c` - Advanced solution for task 2
+- `task1_3_basic.c` - Basic implementation of task 3
+- `task1_3_intermediate.c` - Intermediate version of task 3
+- `task1_4.c` - Final task implementation
+
+## Compiled Executables
+- `afp` - Compiled from again-first-project.c
+- `task1_1` - Compiled from task1_1.c
+- `task1_1_advanced` - Compiled from task1_1_advanced.c
+- `task1_2_basic` - Compiled from task1_2_basic.c
+- `task1_2_intermediate` - Compiled from task1_2_intermediate.c
+- `task1_2_advanced` - Compiled from task1_2_advanced.c
+- `task1_3_basic` - Compiled from task1_3_basic.c
+- `task1_3_intermediate` - Compiled from task1_3_intermediate.c
+- `task1_4` - Compiled from task1_4.c
+
+## Documentation
+- `README.md` - Project overview and structure
+
 ## Project Overview
 For this assignment, we developed a custom shell implementation with the following features:
 
