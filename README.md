@@ -57,7 +57,7 @@ A single-core, uniprocessor system that supports multiprogramming can only run o
 inter-process communication (IPC). If there are multiple threads in one process, are the system
 calls needed for sharing memory between those threads?**
 
-[Update answer later]
+System calls are needed for shared memory IPC because a process cannot acces another process' memory, the OS must allocate and map shared memory securely. Threads in the same process already share memory, so syscalls are not needed for basic sharing.
 
 ### Question 1.5.3
 **Consider the following sample code from a simple shell program. Now,
