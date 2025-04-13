@@ -22,7 +22,7 @@
 
 // child function used by `clone()` to execute a command with custom environment
 int child_function(void *arg) {
-    printf("Child (clone): Calling `execle()` for /usr/bin/env\n"); 
+    printf("Child (clone): Calling `execle()` for /usr/bin/env\n");
     char *envp[] = {"MY_VAR=HelloWorld", NULL}; // custom environment variable
     execle("/usr/bin/env", "env", NULL, envp); // execute `env` with environment
     perror("Execle failed!"); // print error if it fails
@@ -37,14 +37,14 @@ int main() {
 
 // infinite loop for shell to continiously ask for user input
     while (1) {
-	// getting user info 
+	// getting user info
         char *username = getlogin();
         char hostname[HOST_NAME_MAX];
         gethostname(hostname, sizeof(hostname));
         char cwd[PATH_MAX];
         getcwd(cwd, sizeof(cwd));
         char *home = getenv("HOME");
-	
+
 	// print shell prompt with colors and formatting
         if (home != NULL && strstr(cwd, home) == cwd) {
 	    // show `~` if inside home directory
@@ -107,11 +107,13 @@ int main() {
             char o;
             printf("THIS IS `FORKBOMB` Demo : continue? (y/n): ");
             scanf(" %c", &o); // ask for confirmation
+	    while(getchar() != '\n'); 
             if (o != 'y') continue; // abort if not `y`
             while (1) fork(); // killing the pc... (don't do it pls)
         }
 
-	// built-in command : runclone
+
+// built-in command : runclone
         if (strcmp(args[0], "runclone") == 0) {
             void *stack = malloc(STACK_SIZE); // allocate memory for child stack
             if (!stack) {
@@ -174,7 +176,7 @@ int main() {
             char ch, prev = ' ';
             while ((ch = fgetc(file)) != EOF) {
                 if ((ch == ' ' || ch == '\n' || ch == '\t') && (prev != ' ' && prev != '\n' && prev != '\t')) {
-                    words++; 
+                    words++;
                 }
                 prev = ch; // save previous character
             }
