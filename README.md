@@ -9,7 +9,7 @@ A custom shell implementation with basic and advanced features, created as part 
 # Project Directory Structure
 
 ## Source Files
-- `again-first-project.c` - Main project file
+- `full-project.c` - Main project file
 - `task1_1.c` - Basic task 1 solution
 - `task1_1_advanced.c` - Advanced task 1 solution
 - `task1_2_basic.c` - Basic implementation of task 2
@@ -20,7 +20,7 @@ A custom shell implementation with basic and advanced features, created as part 
 - `task1_4.c` - Task 4
 
 ## Compiled Executables
-- `afp` - Compiled from again-first-project.c
+- `full-project` - Compiled from again-first-project.c
 - `task1_1` - Compiled from task1_1.c
 - `task1_1_advanced` - Compiled from task1_1_advanced.c
 - `task1_2_basic` - Compiled from task1_2_basic.c
@@ -63,7 +63,7 @@ For this assignment, we developed a custom shell implementation with the followi
 ### Advanced Features
 - **Custom Commands**:
   - `info`: Displays user and machine names
-  - `random`: Generates a random number between 1-100
+  - `random`: By default it generates a random number between 1-100, additionally the user can input a number after 'random' and the range of the generated number will be changed to the inputed number
   - `countwords`: Takes filename and displays word count with filename
 - **Output Redirection**: Supports redirecting command output to files (e.g., `command > foo.txt`)
 - **System Calls**: Utilizes `fork()`, `exec()`, and `wait()` for process management
@@ -125,3 +125,29 @@ else { // Parent
     wait();
 }
 ```
+
+## Challenges
+
+- We were unsure whether we should implement the custom commands by simply using existing Linux Bash utilities or by creating them entirely from scratch. In the end, we decided to implement everything from scratch since this approach felt more concrete and better demonstrated our understanding of system programming. Additionally, the project description did not explicitly specify which approach to take.
+
+- Another challenge we encountered was deciding whether we should separate each task into its own file or keep all of them together in a single source file. To cover both approaches and for better flexibility, we decided to do both — we implemented tasks in separate files for clarity but also provided a single file (`full-project.c`) that combines everything.
+
+- We spent significantly more time researching and planning than we originally expected. Many of the system programming concepts were new to us, so proper research was crucial to avoid mistakes and misunderstandings.
+
+- A major challenge we faced was the difficulty of working on the same files simultaneously. Moving files between the virtual machine and our main operating systems was not very convenient, especially since we were working in a VirtualBox environment. To overcome this, we initialized the project folder as a Git repository. This allowed both of us to push, pull, and download files from the repository regardless of the operating system we were using, which greatly improved our workflow and collaboration.
+
+## Compilation Instructions
+To build any of the executables:
+```bash
+gcc [source_file.c] -Wall -o [executable_name] 
+```
+To run:
+```bash
+./[executable_name]
+```
+
+## Sources
+
+- LMS, Operating Systems course materials
+- ChatGPT
+- YouTube tutorials
