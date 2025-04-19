@@ -53,9 +53,12 @@ We measured memory usage at three key stages using the command:
 
 ### Screenshot 1 - VSZ/RSS 
 
-<p align="left">
-  <img src="task2.3.png" alt="VSZ RSS Output" width="600"/>
-</p>
+<table>
+  <tr>
+    <td><img src="task2.3.png" alt="VSZ RSS Output" width="620"/></td>
+  </tr>
+</table>
+
 
 This screenshot shows memory usage at three different phases:
 - before mmap
@@ -68,9 +71,12 @@ We also examined memory mappings with:
 
 ### Screenshot 2 - /proc/<PID>/maps
 
-<p align="left">
-  <img src="task2.3second.png" alt="VSZ RSS Output" width="600"/>
-<p> 
+<table>
+  <tr>
+    <td><img src="task2.3second.png" alt="Memory Map" width="500"/></td>
+  </tr>
+</table>
+
 
 This screenshot shows the memory layout of the process while mmap'd memory is STILL Active, including [heap], [stack], and the anonymous mapped memory region used by `mmap()`.
 
