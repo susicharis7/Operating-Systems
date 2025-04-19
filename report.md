@@ -13,5 +13,36 @@ In this project, we used the `mmap()` and `munmap()` system calls to dynamically
 
 ```c
 void *addr = mmap(NULL, 4096, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
+```
+
+### Explanation of mmap() arguments:
+- `NULL`: Let the OS choose the address
+- `4096`: Standard practice for OS, allocates one page (size is 4KB)
+- `PROT_READ | PROT_WRITE`: Allows reading & writing
+- `MAP_RIVATE | MAP_ANONYMOUS`: Create a private anonymous mapping (not backed by a file)
+- `-1, 0` : Required when `MAP_ANONYMOUS` is used
+
+To release the memory, we used:
+```
+munmap(addr, 4096);
+```
+
+This returns the page to the OS (Operating System).
+
+---
+
+## Task 2.2 - Implementation of C Program (`mmap_demo.c`)
+
+We implemented a C program that:
+- Printed initial memory usage using `ps`
+- Allocated 4KB of memory using `mmap()`
+- Printed memory usage after `mmap()`
+- Wrote into the allocated memory (`strcpy((char *)addr, ...)`)
+- Printed memory usage after writing
+- Unmapped the memory using `munmap()`
+
+All steps included error checking and appropriate inline comments for explanation.
+The program compiles without ANY warnings OR errors.
+
 
 
