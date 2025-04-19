@@ -58,6 +58,6 @@ This screenshot shows memory usage at three different phases:
 - after mmap
 - after writing to memory
 
-![VSZ RSS Output] (task2.3.png)
+![VSZ RSS Output](task2.3.png)
 
 
