@@ -5,7 +5,7 @@
 #include <string.h>
 
 int main() {
-    printf("|=== Project 2 [Sanin & Haris] DEMO ===|");
+    printf("\n|=== Project 2 [Sanin & Haris] DEMO ===|");
 
     // print initial memory usage using ps
     printf("\n[1] Initial memory usage (before mmap):\n");

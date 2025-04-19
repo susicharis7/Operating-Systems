@@ -53,11 +53,20 @@ We measured memory usage at three key stages using the command:
 
 ### Screenshot 1 - VSZ/RSS 
 
+![VSZ RSS Output](task2.3.png)
+
 This screenshot shows memory usage at three different phases:
 - before mmap
 - after mmap
 - after writing to memory
 
-![VSZ RSS Output](task2.3.png)
 
+We also examined memory mappings with:
+`cat /proc/<PID>/maps`
+
+### Screenshot 2 - /proc/<PID>/maps
+
+![VSZ RSS Output](task2.3second.png)
+
+This screenshot shows the memory layout of the process while mmap'd memory is STILL Active, including [heap], [stack], and the anonymous mapped memory region used by `mmap()`.
 
