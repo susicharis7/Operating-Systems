@@ -44,5 +44,20 @@ We implemented a C program that:
 All steps included error checking and appropriate inline comments for explanation.
 The program compiles without ANY warnings OR errors.
 
+---
+
+## Task 2.3 - Memory Usage Analysis
+
+We measured memory usage at three key stages using the command:
+`ps -o pid,vsz,rss,comm -p <PID>`
+
+### Screenshot 1 - VSZ/RSS 
+
+This screenshot shows memory usage at three different phases:
+- before mmap
+- after mmap
+- after writing to memory
+
+![VSZ RSS Output] (task2.3.png)
 
 
