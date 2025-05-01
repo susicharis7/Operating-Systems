@@ -2,7 +2,7 @@
 
 **Team Members:**
 - Haris Susic - 23004218
-- Sanin Zajmovic - 23008124
+- Sanin Zajmovic - 23004476
 
 
 ---
@@ -85,6 +85,11 @@ This screenshot shows the memory layout of the process while mmap'd memory is ST
 ## Task 2.4 - Explanation of Observations
 
 ### a. VSZ/RSS Values (at each stage):
+| Phase                      | PID  | VSZ (KB) | RSS (KB) |
+|----------------------------|------|----------|----------|
+| Before mmap                | 6833 | 2680     | 1560     |
+| After mmap                 | 6833 | 2684     | 1560     |
+| After writing to memory    | 6833 | 2684     | 1560     |
 
 
 
