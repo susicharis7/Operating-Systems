@@ -93,7 +93,22 @@ This screenshot shows the memory layout of the process while mmap'd memory is ST
 
 
 
-### b. Memory Map Analysis:
+### b. Memory Layout (/proc/<PID>/maps)
+
+The memory map of the process shows the typical memory segment such as:
+
+- `[heap]`: dynamically allocated memory (e.g., malloc, mmap)
+- `[stack]`: function call stack
+- `[vvar]`, `[vdso]`, `[vsyscall]`: kernel-related mappings
+- Several entries with `rw-p` and no file path → these are **anonymous mappings** (likely from our `mmap()` call)
+
+The screenshot below shows the complete memory layout of the process while the `mmap()` region was still active:
+
+<table>
+  <tr>
+    <td><img src="memory.png" alt="Memory" width="500"/></td>
+  </tr>
+</table>
 
 
 ### c. Explanation: 
