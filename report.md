@@ -111,4 +111,19 @@ The screenshot below shows the complete memory layout of the process while the `
 </table>
 
 
-### c. Explanation: 
+### c. Observations & Explanation
+
+After executing the program, we observed the following:
+
+- The **VSZ (virtual memory size)** increased from 2680 KB to 2684 KB after calling `mmap()`. This indicates that a 
+  new memory page (4KB) was successfully reserved in the virtual address space.
+- The **RSS (resident set size)**, which reflects the amount of actual physical memory used, remained constant at 1560 KB. 
+  This confirms that **lazy allocation** is in effect — the kernel does not assign real physical memory until the memory is accessed.
+- Even after writing to the memory, the RSS did not change visibly. This can happen because:
+  - The change (one page) is too small to reflect in rounded RSS output,
+  - Or the system had already committed that memory due to optimizations.
+- The `/proc/<PID>/maps` output shows a new **anonymous memory segment** created, 
+  which is consistent with the behavior of `mmap()` with `MAP_ANONYMOUS` and `MAP_PRIVATE` flags.
+
+This behavior illustrates how Linux efficiently manages memory, by delaying physical allocation until 
+absolutely necessary (page fault), thus conserving resources. 
