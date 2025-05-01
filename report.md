@@ -1,8 +1,9 @@
 # Project 2: Memory Management
 
 **Team Members:**
-- Haris Susic - 23004218
 - Sanin Zajmovic - 23004476
+- Haris Susic - 23004218
+
 
 
 ---
