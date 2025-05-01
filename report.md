@@ -69,7 +69,7 @@ This screenshot shows memory usage at three different phases:
 We also examined memory mappings with:
 `cat /proc/<PID>/maps`
 
-### Screenshot 2 - /proc/<PID>/maps
+### Screenshot 2 - /proc/PID/maps
 
 <table>
   <tr>
@@ -93,7 +93,7 @@ This screenshot shows the memory layout of the process while mmap'd memory is ST
 
 
 
-### b. Memory Layout (/proc/<PID>/maps)
+### b. Memory Layout (/proc/PID/maps)
 
 The memory map of the process shows the typical memory segment such as:
 
@@ -127,3 +127,29 @@ After executing the program, we observed the following:
 
 This behavior illustrates how Linux efficiently manages memory, by delaying physical allocation until 
 absolutely necessary (page fault), thus conserving resources. 
+
+
+## Task 2.5 - Shell Script : `analyse.sh` 
+
+We created a shell script `analyse.sh` which automates the analysis of memory usage for a specific process.
+
+### Script Functionality
+- Accepts a process ID (PID) as a command-line argument
+- Verifies that the process exists
+- Displays memory usage using the `ps` command (VSZ and RSS)
+- Displays the memory map using `/proc/<PID>/maps`
+- Includes inline comments to explain each step
+- Was made executable using `chmod +x analyse.sh`
+
+### Execution Example
+The script was successfully tested while the `mmap_demo` process was running.
+
+Below is a screenshot showing the output of the script:
+
+<table>
+  <tr>
+    <td><img src="task2.5.png" alt="ShellScript" width="500"/></td>
+  </tr>
+</table>
+
+
