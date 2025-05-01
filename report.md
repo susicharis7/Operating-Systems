@@ -154,3 +154,12 @@ Below is a screenshot showing the output of the script:
 </table>
 
 
+---
+
+## Team Contributions
+
+- **Haris Susic**: Wrote `mmap_demo.c`, tested memory behaviour, captured system output, structured report.
+- **Sanin Zajmovic**: Wrote `analyse.sh`, coordinated measurements, performed tests, organized screenshots, helped with structuring report.
+
+Both members contributed equally to the explanations, reported formatting, and validation of results.
+
